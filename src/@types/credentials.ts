@@ -3,4 +3,10 @@ interface SignInCredentials {
   password: string;
 }
 
-export type { SignInCredentials };
+interface SignUpCredentials {
+  name: string;
+  email: string;
+  password: string;
+}
+
+export type { SignInCredentials, SignUpCredentials };

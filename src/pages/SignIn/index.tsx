@@ -1,8 +1,8 @@
 import { useCallback, useContext, useRef } from 'react';
+import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
-import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import logoImg from '../../assets/logo.svg';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
