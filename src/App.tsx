@@ -2,13 +2,15 @@ import SignIn from './pages/SignIn';
 // import SignUp from './pages/SignUp';
 import GlobalStyle from './styles/global';
 
-const App: React.FC = () => {
-  return (
-    <>
+import { AuthProvider } from './contexts/AuthContext';
+
+const App: React.FC = () => (
+  <>
+    <GlobalStyle />
+    <AuthProvider>
       <SignIn />
-      <GlobalStyle />
-    </>
-  );
-};
+    </AuthProvider>
+  </>
+);
 
 export default App;

@@ -1,4 +1,4 @@
-import { HTMLAttributes } from 'react';
+import React, { HTMLAttributes } from 'react';
 import { Container } from './styles';
 
 interface TooltipProps extends HTMLAttributes<HTMLDivElement> {
