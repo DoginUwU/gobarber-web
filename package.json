@@ -23,6 +23,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
+    "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
     "react-spring": "^9.3.0",
     "styled-components": "^5.3.3",
@@ -32,6 +33,7 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
+    "@types/react-router-dom": "^5.3.2",
     "@types/styled-components": "^5.1.15",
     "@types/uuid": "^8.3.1",
     "@types/yup": "^0.29.13",

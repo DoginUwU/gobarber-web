@@ -1,11 +1,12 @@
 import React, { createContext, useCallback, useContext, useState } from 'react';
-import { SignInCredentials } from '../@types/credentials';
+import { SignInCredentials, SignUpCredentials } from '../@types/credentials';
 import { User } from '../@types/user';
 import api from '../services/api';
 
 interface AuthContextState {
   user: User;
   signIn(credentials: SignInCredentials): Promise<void>;
+  signUp(credentials: SignUpCredentials): Promise<void>;
   signOut(): void;
 }
 
@@ -28,11 +29,8 @@ const AuthProvider: React.FC = ({ children }) => {
     return {} as AuthState;
   });
 
-  const signIn = useCallback(async ({ email, password }) => {
-    const response = await api.post<AuthState>('/sessions', {
-      email,
-      password,
-    });
+  const signIn = useCallback(async (credentials: SignInCredentials) => {
+    const response = await api.post<AuthState>('/sessions', credentials);
 
     const { token, user } = response.data;
 
@@ -40,6 +38,10 @@ const AuthProvider: React.FC = ({ children }) => {
     localStorage.setItem('@GoBarber:user', JSON.stringify(user));
 
     setData({ token, user });
+  }, []);
+
+  const signUp = useCallback(async (credentials: SignUpCredentials) => {
+    await api.post<AuthState>('/users', credentials);
   }, []);
 
   const signOut = useCallback(() => {
@@ -50,7 +52,7 @@ const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user: data.user, signIn, signOut }}>
+    <AuthContext.Provider value={{ user: data.user, signIn, signOut, signUp }}>
       {children}
     </AuthContext.Provider>
   );
