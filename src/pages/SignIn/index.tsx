@@ -9,7 +9,7 @@ import Input from '../../components/Input';
 import getValidationErrors from '../../utils/getValidationErrors';
 import { SignInCredentials } from '../../@types/credentials';
 import { Container, Content, Background } from './styles';
-import { useAuth } from '../../contexts/AuthContext';
+import { useAuth } from '../../hooks/AuthContext';
 
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
