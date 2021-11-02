@@ -6,6 +6,7 @@ import {
   useRef,
   useState,
   useCallback,
+  CSSProperties,
 } from 'react';
 import { IconBaseProps } from 'react-icons';
 import { FiAlertCircle } from 'react-icons/fi';
@@ -14,11 +15,13 @@ import { Container, Error } from './styles';
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   icon: React.ComponentType<IconBaseProps>;
+  containerStyle?: CSSProperties;
 }
 
 const Input: React.FC<InputProps> = ({
   name,
   icon: Icon,
+  containerStyle,
   ...rest
 }: InputProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -49,7 +52,12 @@ const Input: React.FC<InputProps> = ({
   }, [fieldName, registerField]);
 
   return (
-    <Container isErrored={!!error} isFilled={isFilled} isFocused={isFocused}>
+    <Container
+      style={containerStyle}
+      isErrored={!!error}
+      isFilled={isFilled}
+      isFocused={isFocused}
+    >
       {Icon && <Icon size={20} />}
       <input
         ref={inputRef}

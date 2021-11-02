@@ -9,6 +9,14 @@ interface SignUpCredentials {
   password: string;
 }
 
+interface ProfileCredentials {
+  name: string;
+  email: string;
+  old_password: string;
+  password: string;
+  password_confirmation: string;
+}
+
 interface ForgotPasswordCredentials {
   email: string;
 }
@@ -22,4 +30,5 @@ export type {
   SignUpCredentials,
   ForgotPasswordCredentials,
   ResetPasswordCredentials,
+  ProfileCredentials,
 };

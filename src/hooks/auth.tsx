@@ -7,6 +7,7 @@ interface AuthContextState {
   user: User;
   signIn(credentials: SignInCredentials): Promise<void>;
   signUp(credentials: SignUpCredentials): Promise<void>;
+  updateUser(data: Partial<User>): void;
   signOut(): void;
 }
 
@@ -48,6 +49,18 @@ const AuthProvider: React.FC = ({ children }) => {
     await api.post<AuthState>('/users', credentials);
   }, []);
 
+  const updateUser = useCallback(
+    (user: User) => {
+      localStorage.setItem('@GoBarber:user', JSON.stringify(user));
+
+      setData({
+        token: data.token,
+        user,
+      });
+    },
+    [setData, data.token],
+  );
+
   const signOut = useCallback(() => {
     localStorage.removeItem('@GoBarber:token');
     localStorage.removeItem('@GoBarber:user');
@@ -56,7 +69,9 @@ const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user: data.user, signIn, signOut, signUp }}>
+    <AuthContext.Provider
+      value={{ user: data.user, signIn, signOut, signUp, updateUser }}
+    >
       {children}
     </AuthContext.Provider>
   );
