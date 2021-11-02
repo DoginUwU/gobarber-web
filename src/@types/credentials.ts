@@ -9,4 +9,17 @@ interface SignUpCredentials {
   password: string;
 }
 
-export type { SignInCredentials, SignUpCredentials };
+interface ForgotPasswordCredentials {
+  email: string;
+}
+interface ResetPasswordCredentials {
+  password: string;
+  password_confirmation: string;
+}
+
+export type {
+  SignInCredentials,
+  SignUpCredentials,
+  ForgotPasswordCredentials,
+  ResetPasswordCredentials,
+};
